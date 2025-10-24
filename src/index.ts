@@ -1,5 +1,3 @@
-import { next as Automerge } from '@automerge/automerge';
-
 // pad bundle size.
 import * as effect from 'effect';
 import * as effectAiOpenai from '@effect/ai-openai';
@@ -37,9 +35,6 @@ export class MyDo extends DurableObject {
 		JSON.stringify(effect);
 		JSON.stringify(effectAiOpenai);
 
-		// wasm
-		const am = Automerge.from({ value: 'foo' });
-
-		return am.value;
+		return 'foo';
 	}
 }
