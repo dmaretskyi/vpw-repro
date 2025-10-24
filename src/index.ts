@@ -32,7 +32,3 @@ export class MyEntrypoint extends WorkerEntrypoint {
 		return 'foo';
 	}
 }
-
-export class MyDo extends DurableObject {
-	bar() {}
-}

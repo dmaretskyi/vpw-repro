@@ -22,11 +22,5 @@ for (let i = 0; i < 30; i++) {
 			const response = await SELF.fetch('https://example.com');
 			expect(await response.text()).toMatchInlineSnapshot(`"Hello World!foo"`);
 		});
-
-		it.skip('run in DO', async () => {
-			await runInDurableObject(env.MY_DO.getByName('foo'), async (obj) => {
-				expect(await obj.bar()).toMatchInlineSnapshot(`"foo"`);
-			});
-		});
 	});
 }
