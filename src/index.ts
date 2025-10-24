@@ -19,16 +19,10 @@ import { DurableObject, WorkerEntrypoint } from 'cloudflare:workers';
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!' + (await env.MY_ENTRYPOINT.foo()));
-	},
-} satisfies ExportedHandler<Env>;
-
-export class MyEntrypoint extends WorkerEntrypoint {
-	foo() {
 		// I think those just need to be in the bundle
 		JSON.stringify(effect);
 		JSON.stringify(effectAiOpenai);
 
-		return 'foo';
-	}
-}
+		return new Response('Hello World!foo');
+	},
+} satisfies ExportedHandler<Env>;
