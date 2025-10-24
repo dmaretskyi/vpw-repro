@@ -1,5 +1,9 @@
 import { next as Automerge } from '@automerge/automerge';
 
+// pad bundle size.
+import * as effect from 'effect';
+import * as effectAiOpenai from '@effect/ai-openai';
+
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
@@ -29,12 +33,21 @@ export class MyEntrypoint extends WorkerEntrypoint {
 
 export class MyDo extends DurableObject {
 	bar() {
+		// wasm
 		const am = Automerge.from({ value: 'foo' });
 		this.ctx.storage.setAlarm(100);
 		return am.value;
 	}
 
+	getCb() {
+		return () => this.bar();
+	}
+
 	async alarm() {
 		const am = Automerge.from({ value: 'bar' });
+
+		// do heavy computation
+		JSON.stringify(effect).slice(0, 10);
+		JSON.stringify(effectAiOpenai).slice(0, 10);
 	}
 }
