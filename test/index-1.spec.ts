@@ -6,7 +6,7 @@ import worker from '../src/index';
 // `Request` to pass to `worker.fetch()`.
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 100; i++) {
 	describe('Hello World worker', () => {
 		it('responds with Hello World! (unit style)', async () => {
 			const request = new IncomingRequest('http://example.com');
