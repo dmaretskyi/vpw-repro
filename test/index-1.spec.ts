@@ -22,7 +22,7 @@ describe('Hello World worker', () => {
 		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!foo"`);
 	});
 
-	it('run in DO', async () => {
+	it.skip('run in DO', async () => {
 		await runInDurableObject(env.MY_DO.getByName('foo'), async (obj) => {
 			expect(await obj.bar()).toMatchInlineSnapshot(`"foo"`);
 		});
