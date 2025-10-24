@@ -1,3 +1,5 @@
+import { next as Automerge } from '@automerge/automerge';
+
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
@@ -11,8 +13,28 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { DurableObject, WorkerEntrypoint } from 'cloudflare:workers';
+
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
+		return new Response('Hello World!' + (await env.MY_ENTRYPOINT.foo()));
 	},
 } satisfies ExportedHandler<Env>;
+
+export class MyEntrypoint extends WorkerEntrypoint {
+	foo() {
+		return this.env.MY_DO.getByName('foo').bar();
+	}
+}
+
+export class MyDo extends DurableObject {
+	bar() {
+		const am = Automerge.from({ value: 'foo' });
+		this.ctx.storage.setAlarm(100);
+		return am.value;
+	}
+
+	async alarm() {
+		const am = Automerge.from({ value: 'bar' });
+	}
+}

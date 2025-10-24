@@ -13,12 +13,12 @@ describe('Hello World worker', () => {
 		const ctx = createExecutionContext();
 		const response = await worker.fetch(request, env, ctx);
 		// Wait for all `Promise`s passed to `ctx.waitUntil()` to settle before running test assertions
-		await waitOnExecutionContext(ctx);
-		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
+		// await waitOnExecutionContext(ctx);
+		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!foo"`);
 	});
 
 	it('responds with Hello World! (integration style)', async () => {
 		const response = await SELF.fetch('https://example.com');
-		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
+		expect(await response.text()).toMatchInlineSnapshot(`"Hello World!foo"`);
 	});
 });
