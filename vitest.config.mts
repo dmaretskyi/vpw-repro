@@ -6,6 +6,7 @@ export default defineWorkersConfig({
 		poolOptions: {
 			workers: {
 				wrangler: { configPath: './wrangler.jsonc' },
+				isolatedStorage: false, // setting this to true hits https://github.com/cloudflare/workers-sdk/issues/11031
 			},
 		},
 	},
