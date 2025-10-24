@@ -26,8 +26,6 @@ for (let i = 0; i < 30; i++) {
 		it('run in DO', async () => {
 			await runInDurableObject(env.MY_DO.getByName('foo'), async (obj) => {
 				expect(await obj.bar()).toMatchInlineSnapshot(`"foo"`);
-
-				await runDurableObjectAlarm(env.MY_DO.getByName('foo'));
 			});
 		});
 	});
