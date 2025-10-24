@@ -25,16 +25,14 @@ export default {
 
 export class MyEntrypoint extends WorkerEntrypoint {
 	foo() {
-		return this.env.MY_DO.getByName('foo').bar();
-	}
-}
-
-export class MyDo extends DurableObject {
-	bar() {
 		// I think those just need to be in the bundle
 		JSON.stringify(effect);
 		JSON.stringify(effectAiOpenai);
 
 		return 'foo';
 	}
+}
+
+export class MyDo extends DurableObject {
+	bar() {}
 }
