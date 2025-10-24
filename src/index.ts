@@ -39,11 +39,8 @@ export class MyDo extends DurableObject {
 		return am.value;
 	}
 
-	getCb() {
-		return () => this.bar();
-	}
-
 	async alarm() {
+		// wasm
 		const am = Automerge.from({ value: 'bar' });
 
 		// do heavy computation
