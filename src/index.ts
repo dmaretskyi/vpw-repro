@@ -33,17 +33,13 @@ export class MyEntrypoint extends WorkerEntrypoint {
 
 export class MyDo extends DurableObject {
 	bar() {
+		// I think those just need to be in the bundle
+		JSON.stringify(effect);
+		JSON.stringify(effectAiOpenai);
+
 		// wasm
 		const am = Automerge.from({ value: 'foo' });
+
 		return am.value;
-	}
-
-	async alarm() {
-		// wasm
-		const am = Automerge.from({ value: 'bar' });
-
-		// do heavy computation
-		JSON.stringify(effect).slice(0, 10);
-		JSON.stringify(effectAiOpenai).slice(0, 10);
 	}
 }
