@@ -35,7 +35,6 @@ export class MyDo extends DurableObject {
 	bar() {
 		// wasm
 		const am = Automerge.from({ value: 'foo' });
-		this.ctx.storage.setAlarm(100);
 		return am.value;
 	}
 
