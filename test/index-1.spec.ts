@@ -1,5 +1,5 @@
-import { env, createExecutionContext, waitOnExecutionContext, SELF, runInDurableObject, runDurableObjectAlarm } from 'cloudflare:test';
-import { describe, it, expect } from 'vitest';
+import { SELF, createExecutionContext, env } from 'cloudflare:test';
+import { describe, expect, it } from 'vitest';
 import worker from '../src/index';
 
 // For now, you'll need to do something like this to get a correctly-typed
@@ -15,12 +15,12 @@ for (let i = 0; i < 100; i++) {
 			const response = await worker.fetch(request, env, ctx);
 			// Wait for all `Promise`s passed to `ctx.waitUntil()` to settle before running test assertions
 			// await waitOnExecutionContext(ctx);
-			expect(await response.text()).toMatchInlineSnapshot(`"Hello World!foo"`);
+			expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
 		});
 
 		it('responds with Hello World! (integration style)', async () => {
 			const response = await SELF.fetch('https://example.com');
-			expect(await response.text()).toMatchInlineSnapshot(`"Hello World!foo"`);
+			expect(await response.text()).toMatchInlineSnapshot(`"Hello World!"`);
 		});
 	});
 }

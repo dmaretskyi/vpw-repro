@@ -15,14 +15,12 @@ import * as effectAiOpenai from '@effect/ai-openai';
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-import { DurableObject, WorkerEntrypoint } from 'cloudflare:workers';
-
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		// I think those just need to be in the bundle
 		JSON.stringify(effect);
 		JSON.stringify(effectAiOpenai);
 
-		return new Response('Hello World!foo');
+		return new Response('Hello World!');
 	},
 } satisfies ExportedHandler<Env>;
